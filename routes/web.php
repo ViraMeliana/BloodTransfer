@@ -13,6 +13,11 @@
 
 Route::group(['middleware' => ['get.menu']], function () {
     Route::get('/', function () {           return view('dashboard.homepage'); });
+    Route::get('/bloodStock', 'BloodStockController@index');
+    Route::get('/createStock', 'BloodStockController@create');
+    Route::get('/showStock', 'BloodStockController@show');
+    Route::get('/editStock', 'BloodStockController@edit');
+   // Route::resource('bloodStock', 'BloodStockController');
 
     Route::group(['middleware' => ['role:user']], function () {
         Route::get('/colors', function () {     return view('dashboard.colors'); });
@@ -61,6 +66,7 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::resource('notes', 'NotesController');
     });
     Auth::routes();
+    
 
     Route::resource('resource/{table}/resource', 'ResourceController')->names([
         'index'     => 'resource.index',
