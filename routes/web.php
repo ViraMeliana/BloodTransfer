@@ -13,10 +13,10 @@
 
 Route::group(['middleware' => ['get.menu']], function () {
     Route::get('/', function () {           return view('dashboard.homepage'); });
-    Route::get('/bloodStock', 'BloodStockController@index');
-    Route::get('/createStock', 'BloodStockController@create');
-    Route::get('/showStock', 'BloodStockController@show');
-    Route::get('/editStock', 'BloodStockController@edit');
+    // Route::get('/bloodbank', 'BloodStockController@index');
+    // Route::get('/createStock', 'BloodStockController@create');
+    // Route::get('/showStock', 'BloodStockController@show');
+    // Route::get('/editStock', 'BloodStockController@edit');
    // Route::resource('bloodStock', 'BloodStockController');
 
     Route::group(['middleware' => ['role:user']], function () {
@@ -64,6 +64,8 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::get('/modals', function(){   return view('dashboard.notifications.modals'); });
         });
         Route::resource('notes', 'NotesController');
+        Route::resource('bloodbank', 'BloodStockController');
+        Route::resource('datauser', 'DataUserController');
     });
     Auth::routes();
     

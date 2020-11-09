@@ -23,6 +23,13 @@ class CreateNotesTable extends Migration
             $table->integer('status_id')->unsigned();
             $table->timestamps();
         });
+        Schema::create($tableNames['bloodbank'], function (Blueprint $table) {
+            $table->bigIncrements('ID_BLOOD');
+            $table->string('ID_ADMIN');
+            $table->string('STOCK');
+            $table->string('USER_BLOODTYPES');
+            $table->timestamps();
+        });
     }
 
     /**

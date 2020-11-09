@@ -10,14 +10,16 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> Blood Bank</div>
                     <div class="card-body">
+                    @foreach($stock as $stocks)
                         <form method="POST" action=""> @csrf<button class="btn btn-primary">{{ __('Logout') }}</button></form> 
                         <br>
                         <h4>Blood Type</h4>
-                        <p> </p>
+                        <p> {{ $stocks->USER_BLOODTYPES }}</p>
                         <h4>Stock:</h4>
-                        <p> </p>
+                        <p> {{ $stocks->STOCK }}</p>
                         
-                        <a href="{{ route('notes.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a>
+                        <a href="{{ route('bloodbank.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a>
+                        @endforeach
                     </div>
                 </div>
               </div>

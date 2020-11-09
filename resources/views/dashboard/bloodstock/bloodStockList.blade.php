@@ -12,7 +12,7 @@
                       <i class="fa fa-align-justify"></i>Blood Stock</div>
                     <div class="card-body">
                         <div class="row"> 
-                          <a href="" class="btn btn-primary m-2">{{ __('Add Note') }}</a>
+                          <a href="{{ route('bloodbank.create') }}" class="btn btn-primary m-2">{{ __('Add Blood Stock') }}</a>
                         </div>
                         <br>
                         <table class="table table-responsive-sm table-striped">
@@ -27,22 +27,26 @@
                           </tr>
                         </thead>
                         <tbody>
-                         
+                        @foreach($stocks as $stock)
                           <tr>
-                            <td><strong>Admin Malang </strong></td>
-                            <td><strong>A </strong></td>
-                            <td><strong>5 </strong></td>
+                            <td><strong>{{ $stock->ID_ADMIN }}</strong></td>
+                            <td><strong>{{ $stock->STOCK }}</strong></td>
+                            <td><strong>{{ $stock->USER_BLOODTYPES }}</strong></td>
                             <td>
-                                <a href="" class="btn btn-block btn-primary">View</a>
-                            </td>
-                            <td>
-                                <a href="" class="btn btn-block btn-primary">Edit</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-block btn-danger">Delete</button>
-                            </td>
+                                <a href="{{ url('/bloodbank/' . $stock->ID_BLOOD) }}" class="btn btn-block btn-primary">View</a>
+                              </td>
+                              <td>
+                                <a href="{{ url('/bloodbank/' . $stock->ID_BLOOD . '/edit') }}" class="btn btn-block btn-primary">Edit</a>
+                              </td>
+                              <td>
+                                <form action="{{ route('bloodbank.destroy', $stock->ID_BLOOD ) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-block btn-danger">Delete</button>
+                                </form>
+                              </td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                       </table>
                       

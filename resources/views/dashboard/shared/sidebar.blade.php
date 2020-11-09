@@ -3,7 +3,7 @@
           <ul class="nav">
             <li class="nav-item">
               <a class="nav-link" href="/">
-                <i class="nav-icon icon-speedometer"></i> Dashboard
+                <i class="nav-icon icon-speedometer"></i> Dashboard22
                 <span class="badge badge-primary">NEW</span>
               </a>
             </li>
