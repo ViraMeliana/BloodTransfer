@@ -10,8 +10,12 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> {{ __('Add User') }}</div>
                     <div class="card-body">
-                        <form method="POST" enctype="multipart/form-data" action="{{ route('datauser.store') }}">
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('userdata.store') }}">
                             @csrf
+                            <div class="form-group row">
+                                <label>User ID</label>
+                                <input class="form-control" type="number" placeholder="" name="userid" required autofocus>
+                            </div>
                             <div class="form-group row">
                                 <label>Username</label>
                                 <input class="form-control" type="text" placeholder="" name="username" required autofocus>
@@ -29,7 +33,7 @@
                                 <input class="form-control" type="email" placeholder="" name="email" required autofocus>
                             </div>
                             <div class="form-group row">
-                                <label>Birthdate</label>
+                                <label>Birth Date</label>
                                 <input class="form-control" type="date" placeholder="" name="birthdate" required autofocus>
                             </div>
                             <div class="form-group row">
@@ -63,7 +67,7 @@
                                 <input class="form-control" type="file" name="file" required autofocus >
                             </div>
                             <button class="btn btn-block btn-success" type="submit">{{ __('Add') }}</button>
-                            <a href="{{ route('datauser.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a> 
+                            <a href="{{ route('userdata.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a> 
                         </form>
                     </div>
                 </div>

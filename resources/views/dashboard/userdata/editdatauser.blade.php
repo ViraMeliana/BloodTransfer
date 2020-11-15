@@ -7,15 +7,19 @@
             <div class="row">
               <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="card">
-                @foreach($users as $user)
+                @foreach($userdata as $user)
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> Data User {{ $user->USER_USERNAME }}</div>
                     <div class="card-body">
                     
-                        <form method="POST" enctype="multipart/form-data"  action="/datauser/{{ $user->ID_USER }}">
+                        <form method="POST" enctype="multipart/form-data"  action="/userdata/{{ $user->ID_USER }}">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="id" value="{{ $user->ID_USER }}">
+                            <input type="hidden" name="userid" value="{{ $user->ID_USER }}">
+                            <div class="form-group row">
+                                <label>User ID</label>
+                                <input class="form-control" type="number" placeholder="{{ $user->ID_USER }}" value="{{ $user->ID_USER }}" name="userid" required autofocus>
+                            </div>
                             <div class="form-group row">
                                 <label>Username</label>
                                 <input class="form-control" type="text" placeholder="{{ $user->USER_USERNAME }}" value="{{ $user->USER_USERNAME }}" name="username" required autofocus>
@@ -67,7 +71,7 @@
                                 <input class="form-control" type="file" name="file" required autofocus >
                             </div>
                             <button class="btn btn-block btn-success" type="submit">{{ __('Add') }}</button>
-                            <a href="{{ route('datauser.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a> 
+                            <a href="{{ route('userdata.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a> 
                         </form>
                     </div>
                     @endforeach

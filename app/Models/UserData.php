@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DataUser extends Model
+class UserData extends Model
 {
     protected $table = 'userdata';
     public $timestamps = false; 
