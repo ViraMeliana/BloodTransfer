@@ -65,7 +65,7 @@ Route::group(['middleware' => ['get.menu']], function () {
         });
         Route::resource('notes', 'NotesController');
         Route::resource('bloodbank', 'BloodStockController');
-        Route::resource('userdata', 'UserDataController');
+        Route::resource('datauser', 'UserDataController');
         Route::resource('adminprofile', 'AdminProfileController');
         Route::resource('transaction', 'TransactionController');
         Route::resource('feedback', 'FeedbackController');

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\UserData;
+use App\Models\DataUser;
+use File;
 
 class UserDataController extends Controller
 {
@@ -14,18 +15,17 @@ class UserDataController extends Controller
     }
     public function index()
     {
-       $userdata = UserData::all();
-        return view('dashboard.userdata.datauserList', ['userdata'=>$userdata]);
+       $datauser = DataUser::all();
+        return view('dashboard.datauser.datauserList', ['datauser'=>$datauser]);
     }
     public function create()
     {
-        return view('dashboard.userdata.createdatauser');
+        return view('dashboard.datauser.createdatauser');
     }
     public function store(Request $request)
     {
         $this->validate($request, [
            'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'userid' => 'required',
             'username' => 'required',
             'password' => 'required',
             'name' => 'required',
@@ -44,7 +44,6 @@ class UserDataController extends Controller
         $tujuan_upload = 'photo_user';
         $file->move($tujuan_upload,$nama_file);
         DB::table('userdata')->insert([
-            'ID_USER' => $request->userid,
             'USER_USERNAME' => $request->username,
             'USER_PASSWORD' => $request->password,
             'USER_NAME' => $request->name,
@@ -58,13 +57,12 @@ class UserDataController extends Controller
             'PHOTO' => $nama_file
         ]);
         $request->session()->flash('message', 'Successfully add user');
-        return redirect()->route('userdata.index');
+        return redirect()->route('datauser.index');
     }
-    public function update(Request $request, $ID_USER){
+    public function update(Request $request, $id){
         $this->validate($request, [
             'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'userid' => 'required',
-            'username' => 'required',
+             'username' => 'required',
              'password' => 'required',
              'name' => 'required',
              'email' => 'required',
@@ -81,9 +79,8 @@ class UserDataController extends Controller
                // isi dengan nama folder tempat kemana file diupload
          $tujuan_upload = 'photo_user';
          $file->move($tujuan_upload,$nama_file);
-         DB::table('userdata')->where('ID_USER',$request->ID_USER)->update([
-            'ID_USER' => $request->userid, 
-            'USER_USERNAME' => $request->username,
+         DB::table('userdata')->where('ID_USER',$request->id)->update([
+             'USER_USERNAME' => $request->username,
              'USER_PASSWORD' => $request->password,
              'USER_NAME' => $request->name,
              'USER_EMAIL' => $request->email,
@@ -96,21 +93,25 @@ class UserDataController extends Controller
              'PHOTO' => $nama_file
          ]);
          $request->session()->flash('message', 'Successfully add user');
-         return redirect()->route('userdata.index');
+         return redirect()->route('datauser.index');
      }
-    public function show($userid)
+    public function show($id)
     {
-        $userdata = DB::table('userdata')->where('ID_USER',$userid)->get();
-        return view('dashboard.userdata.datauserShow',['userdata'=>$userdata]);
+        $user = DB::table('userdata')->where('ID_USER',$id)->get();
+        return view('dashboard.datauser.datauserShow',['users'=>$user]);
     }
-    public function edit($userid)
+    public function edit($id)
     {
-        $userdata = DB::table('userdata')->where('ID_USER',$userid)->get();
-        return view('dashboard.userdata.editdatauser',['userdata'=>$userdata]);
+        $user = DB::table('userdata')->where('ID_USER',$id)->get();
+        return view('dashboard.datauser.editdatauser',['users'=>$user]);
     }
-    public function destroy($userid)
-    {
-        $userdata =  DB::table('userdata')->where('ID_USER',$userid)->delete();
-        return redirect()->route('userdata.index');
+    public function destroy($id)
+    { 
+        $tujuan_upload = '/photo_user/';
+        $user = DB::table('userdata')->select('PHOTO')->where('ID_USER',$id)->get();
+        File::delete(public_path().$tujuan_upload.$user);
+        //unlink(public_path().$tujuan_upload.$user);
+        $stocks =  DB::table('userdata')->where('ID_USER',$id)->delete();
+        return redirect()->route('datauser.index');
     }
 }
