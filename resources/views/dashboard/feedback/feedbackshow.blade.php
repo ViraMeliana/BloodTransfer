@@ -2,36 +2,46 @@
 
 @section('content')
 
-        <div class="container-fluid">
-          <div class="animated fadeIn">
-            <div class="row">
-              <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                <div class="card">
-                @foreach($feedback as $fb)
-                    <div class="card-header">
-                      <i class="fa fa-align-justify"></i> Feedback {{ $fb->ID_FEEDBACK }}</div>
-                    <div class="card-body">
-                        <h4>Feedback ID: </h4>
-                        <p> {{ $fb->ID_FEEDBACK }}</p>
-                        <h4>User ID: </h4>
-                        <p> {{ $fb->ID_USER }}</p>
-                        <h4>Admin ID:</h4>
-                        <p> {{ $fb->ID_ADMIN }}</p>
-                        <h4>Date: </h4>
-                        <p> {{ $fb->DATE }}}</p>
-                        <h4>Comment: </h4>
-                        <p> {{ $fb->COMMENT }}</p>
-                        <a href="{{ route('feedback.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a>
-                    </div>
-                    @endforeach
-                </div>
-              </div>
+
+<div class="container-fluid">
+  <div class="fade-in">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header"><h4>Feedback</h4></div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered datatable">
+                    <thead>
+                        <tr>
+                        <th>Feedback ID</th>
+                            <th>User ID</th>
+                            <th>Admin ID</th>
+                            <th>Date</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($feedback as $fb)
+                        <tr>
+                        <td>{{ $fb->ID_FEEDBACK }}</td>
+                            <td>{{ $fb->ID_USER }}</td>
+                            <td>{{ $fb->ID_ADMIN }}</td>
+                            <td>{{ $fb->DATE }}</td>
+                            <td>{{ $fb->COMMENT }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <a class="btn btn-primary" href="{{ route('feedback.index') }}">Return</a>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection
-
 
 @section('javascript')
 

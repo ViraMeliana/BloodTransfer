@@ -8,7 +8,7 @@
               <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i> Edit</div>
+                    <h4>Edit Blood Stock</h4></div>
                     <div class="card-body">
                     @foreach($stock as $stocks)
                     <form method="POST" action="/bloodbank/{{ $stocks->ID_BLOOD }}">

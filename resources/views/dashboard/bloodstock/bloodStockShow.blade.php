@@ -2,33 +2,42 @@
 
 @section('content')
 
-        <div class="container-fluid">
-          <div class="animated fadeIn">
-            <div class="row">
-              <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-                <div class="card">
-                    <div class="card-header">
-                      <i class="fa fa-align-justify"></i> Blood Bank</div>
-                    <div class="card-body">
-                    @foreach($stock as $stocks)
-                        <form method="POST" action=""> @csrf<button class="btn btn-primary">{{ __('Logout') }}</button></form> 
-                        <br>
-                        <h4>Blood Type</h4>
-                        <p> {{ $stocks->USER_BLOODTYPES }}</p>
-                        <h4>Stock:</h4>
-                        <p> {{ $stocks->STOCK }}</p>
-                        
-                        <a href="{{ route('bloodbank.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a>
+
+<div class="container-fluid">
+  <div class="fade-in">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header"><h4>Blood Stock</h4></div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered datatable">
+                    <thead>
+                        <tr>
+                            <th>Admin</th>
+                            <th>Blood Type</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($stock as $stock)
+                        <tr>
+                        <td>{{ $stock->ID_ADMIN }}</td>
+                            <td>{{ $stock->STOCK }}</td>
+                            <td>{{ $stock->USER_BLOODTYPES }}</td>
+                        </tr>
                         @endforeach
-                    </div>
-                </div>
-              </div>
+                    </tbody>
+                </table>
+                <a class="btn btn-primary" href="{{ route('bloodbank.index') }}">Return</a>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection
-
 
 @section('javascript')
 

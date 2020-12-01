@@ -8,11 +8,11 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      
-                      <i class="fa fa-align-justify"></i>Transaction Data</div>
+                      <h4>Data Transaction</h4>
+                    </div>
                     <div class="card-body">
                         <div class="row"> 
-                          <a href="{{ route('transaction.create') }}" class="btn btn-primary m-2">{{ __('Add Transaction') }}</a>
+                          <a href="{{ route('transaction.create') }}" class="btn btn-primary m-3">{{ __('Add Transaction') }}</a>
                         </div>
                         <br>
                         <table class="table table-responsive-sm table-striped">
@@ -27,20 +27,23 @@
                             <th>Status</th>
                             <th>Date</th>
                             <th>Identity Card</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
                         @foreach($transaction as $trans)
                           <tr>
-                            <td><strong>{{ $trans->ID_TRANS  }}</strong></td>
-                            <td><strong>{{ $trans->ID_BLOOD }}</strong></td>
-                            <td><strong>{{ $trans->ID_USER }}</strong></td>
-                            <td><strong>{{ $trans->CATEGORY }}</strong></td>
-                            <td><strong>{{ $trans->HEALTH_DOC }}</strong></td>
-                            <td><strong>{{ $trans->STATEMENT }}</strong></td>
-                            <td><strong>{{ $trans->STATUS }}</strong></td>
-                            <td><strong>{{ $trans->DATE }}</strong></td>
-                            <td><strong>{{ $trans->IDENTITY_CARD }}</strong></td>
+                                <td>{{ $trans->ID_TRANS  }}</td>
+                                <td>{{ $trans->ID_BLOOD }}</td>
+                                <td>{{ $trans->ID_USER }}</td>
+                                <td>{{ $trans->CATEGORY }}</td>
+                                <td>{{ $trans->HEALTH_DOC }}</td>
+                                <td>{{ $trans->STATEMENT }}</td>
+                                <td>{{ $trans->STATUS }}</td>
+                                <td>{{ $trans->DATE }}</td>
+                                <td>{{ $trans->IDENTITY_CARD }}</td>
                             <td>
                                 <a href="{{ url('/transaction/' . $trans->ID_TRANS) }}" class="btn btn-block btn-primary">View</a>
                               </td>
@@ -72,4 +75,3 @@
 @section('javascript')
 
 @endsection
-

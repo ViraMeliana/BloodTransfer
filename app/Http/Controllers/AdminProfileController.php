@@ -15,11 +15,11 @@ class AdminProfileController extends Controller
     public function index()
     {
        $adminprofile = AdminProfile::all();
-        return view('dashboard.adminprofile.userList', ['adminprofile'=>$adminprofile]);
+        return view('dashboard.adminprofile.adminList', ['adminprofile'=>$adminprofile]);
     }
     public function create()
     {
-        return view('dashboard.adminprofile.userCreate');
+        return view('dashboard.adminprofile.adminCreate');
     }
     public function store(Request $request)
     {
@@ -85,12 +85,12 @@ class AdminProfileController extends Controller
     public function show($profileadminid)
     {
         $adminprofile = DB::table('adminprofile')->where('ID_PROFILEADMIN',$profileadminid)->get();
-        return view('dashboard.adminprofile.userShow',['adminprofile'=>$adminprofile]);
+        return view('dashboard.adminprofile.adminShow',['adminprofile'=>$adminprofile]);
     }
     public function edit($profileadminid)
     {
         $adminprofile = DB::table('adminprofile')->where('ID_PROFILEADMIN',$profileadminid)->get();
-        return view('dashboard.adminprofile.userEditForm',['adminprofile'=>$adminprofile]);
+        return view('dashboard.adminprofile.adminEditForm',['adminprofile'=>$adminprofile]);
     }
     public function destroy($profileadminid)
     {

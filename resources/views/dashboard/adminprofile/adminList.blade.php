@@ -5,13 +5,13 @@
         <div class="container-fluid">
           <div class="animated fadeIn">
             <div class="row">
-              <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+              <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i>{{ __('Admin Profile') }}</div>
+                    <h4>Admin Profile</h4></div>
                     <div class="card-body">
-                    <div class="row"> 
-                          <a href="{{ route('adminprofile.create') }}" class="btn btn-primary m-2">{{ __('Add Admin') }}</a>
+                        <div class="row"> 
+                          <a href="{{ route('adminprofile.create') }}" class="btn btn-primary m-3">{{ __('Add Admin') }}</a>
                         </div>
                         <br>
                         <table class="table table-responsive-sm table-striped">
@@ -24,19 +24,22 @@
                             <th>Region</th>
                             <th>Latitude</th>
                             <th>Longtitude</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($adminprofile as $admin)
-                            <tr>
-                              <td>{{ $admin->ID_PROFILEADMIN }}</td>
-                              <td>{{ $admin->ID_ADMIN }}</td>
-                              <td>{{ $admin->ADMIN_ADDRESS }}</td>
-                              <td>{{ $admin->ADMIN_PHONE }}</td>
-                              <td>{{ $admin->ADMIN_REGION }}</td>
-                              <td>{{ $admin->LATITUDE }}</td>
-                              <td>{{ $admin->LONGTITUDE }}</td>
-                              <td>
+                        @foreach($adminprofile as $admin)
+                          <tr>
+                            <td>{{ $admin->ID_PROFILEADMIN }}</td>
+                            <td>{{ $admin->ID_ADMIN }}</td>
+                            <td>{{ $admin->ADMIN_ADDRESS }}</td>
+                            <td>{{ $admin->ADMIN_PHONE }}</td>
+                            <td>{{ $admin->ADMIN_REGION }}</td>
+                            <td>{{ $admin->LATITUDE }}</td>
+                            <td>{{ $admin->LONGTITUDE }}</td>
+                            <td>
                                 <a href="{{ url('/adminprofile/' . $admin->ID_PROFILEADMIN) }}" class="btn btn-block btn-primary">View</a>
                               </td>
                               <td>
@@ -50,9 +53,10 @@
                                 </form>
                               </td>
                             </tr>
-                          @endforeach
+                            @endforeach
                         </tbody>
                       </table>
+                      
                     </div>
                 </div>
               </div>

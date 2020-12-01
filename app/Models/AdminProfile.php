@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdminProfile extends Model
 {
-    protected $table = 'admin_profile';
+    protected $table = 'adminprofile';
     public $timestamps = false; 
  
 }

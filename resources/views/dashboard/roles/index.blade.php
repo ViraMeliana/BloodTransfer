@@ -11,7 +11,7 @@
           <div class="card-header"><h4>Menu roles</h4></div>
             <div class="card-body">
                 <div class="row">
-                    <a class="btn btn-lg btn-primary" href="{{ route('roles.create') }}">Add new role</a>
+                    <a class="btn btn-lg btn-primary m-3" href="{{ route('roles.create') }}">Add new role</a>
                 </div>
                 <br>
                 <table class="table table-striped table-bordered datatable">

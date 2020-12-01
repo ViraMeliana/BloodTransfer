@@ -8,11 +8,11 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      
-                      <i class="fa fa-align-justify"></i>Blood Stock</div>
+                    <h4>Blood Stock</h4>
+                      </div>
                     <div class="card-body">
                         <div class="row"> 
-                          <a href="{{ route('bloodbank.create') }}" class="btn btn-primary m-2">{{ __('Add Blood Stock') }}</a>
+                          <a href="{{ route('bloodbank.create') }}" class="btn btn-primary m-3">{{ __('Add Stock') }}</a>
                         </div>
                         <br>
                         <table class="table table-responsive-sm table-striped">
@@ -29,9 +29,9 @@
                         <tbody>
                         @foreach($stocks as $stock)
                           <tr>
-                            <td><strong>{{ $stock->ID_ADMIN }}</strong></td>
-                            <td><strong>{{ $stock->STOCK }}</strong></td>
-                            <td><strong>{{ $stock->USER_BLOODTYPES }}</strong></td>
+                            <td>{{ $stock->ID_ADMIN }}</td>
+                            <td>{{ $stock->STOCK }}</td>
+                            <td>{{ $stock->USER_BLOODTYPES }}</td>
                             <td>
                                 <a href="{{ url('/bloodbank/' . $stock->ID_BLOOD) }}" class="btn btn-block btn-primary">View</a>
                               </td>
