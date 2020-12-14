@@ -13,7 +13,6 @@
                 <table class="table table-striped table-bordered datatable">
                     <thead>
                         <tr>
-                          <th>Transaction ID</th>
                             <th>Blood ID</th>
                             <th>User ID</th>
                             <th>Category</th>
@@ -27,15 +26,18 @@
                     <tbody>
                     @foreach($transaction as $trans)
                         <tr>
-                        <td>{{ $trans->ID_TRANS  }}</td>
                                 <td>{{ $trans->ID_BLOOD }}</td>
                                 <td>{{ $trans->ID_USER }}</td>
                                 <td>{{ $trans->CATEGORY }}</td>
-                                <td>{{ $trans->HEALTH_DOC }}</td>
-                                <td>{{ $trans->STATEMENT }}</td>
+                                <td>
+                                    <a href="/downloadHealthDoc/{{$trans->ID_TRANS}}">{{ $trans->HEALTH_DOC }}</a>
+                                </td>
+                                <td>
+                                    <a href="/downloadStatement/{{$trans->ID_TRANS}}">{{ $trans->STATEMENT }}</a>
+                                </td>
                                 <td>{{ $trans->STATUS }}</td>
                                 <td>{{ $trans->DATE }}</td>
-                                <td>{{ $trans->IDENTITY_CARD }}</td>
+                                <td><img src="{{ url('/photo_transaction')}}/{{$trans->IDENTITY_CARD}}" style="width:200px; height:250px"></td>
                         </tr>
                         @endforeach
                     </tbody>

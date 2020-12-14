@@ -14,12 +14,6 @@
                             @csrf
                             <div class="form-group row">
                                 <div class="col">
-                                    <label>Transaction ID</label>
-                                    <input class="form-control" type="number" placeholder="" name="transactionid" required autofocus number_format>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col">
                                     <label>Blood ID</label>
                                     <input class="form-control" type="number" placeholder="" name="bloodid" required autofocus number_format>
                                 </div>
@@ -42,13 +36,13 @@
                             <div class="form-group row">
                                 <div class="col">
                                     <label>Health Document</label>
-                                    <input class="form-control" type="file"  name="file" required autofocus>
+                                    <input class="form-control" type="file"  name="healthdoc" required autofocus>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">
                                     <label>Statement</label>
-                                    <input class="form-control" type="file"  name="file" required autofocus>
+                                    <input class="form-control" type="file"  name="statement" required autofocus>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -66,7 +60,7 @@
                             <div class="form-group row">
                                 <div class="col">
                                     <label>Identity Card</label>
-                                    <input class="form-control" type="file" name="file" required autofocus >
+                                    <input class="form-control" type="file" name="identitycard" required autofocus >
                                 </div>
                             </div>
                             <button class="btn btn-block btn-success" type="submit">{{ __('Add') }}</button>

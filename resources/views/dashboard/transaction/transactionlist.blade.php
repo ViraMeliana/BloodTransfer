@@ -18,15 +18,10 @@
                         <table class="table table-responsive-sm table-striped">
                         <thead>
                           <tr>
-                            <th>Transaction ID</th>
                             <th>Blood ID</th>
                             <th>User ID</th>
                             <th>Category</th>
-                            <th>Health Document</th>
-                            <th>Statement</th>
                             <th>Status</th>
-                            <th>Date</th>
-                            <th>Identity Card</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -35,15 +30,10 @@
                         <tbody>
                         @foreach($transaction as $trans)
                           <tr>
-                                <td>{{ $trans->ID_TRANS  }}</td>
                                 <td>{{ $trans->ID_BLOOD }}</td>
                                 <td>{{ $trans->ID_USER }}</td>
                                 <td>{{ $trans->CATEGORY }}</td>
-                                <td>{{ $trans->HEALTH_DOC }}</td>
-                                <td>{{ $trans->STATEMENT }}</td>
                                 <td>{{ $trans->STATUS }}</td>
-                                <td>{{ $trans->DATE }}</td>
-                                <td>{{ $trans->IDENTITY_CARD }}</td>
                             <td>
                                 <a href="{{ url('/transaction/' . $trans->ID_TRANS) }}" class="btn btn-block btn-primary">View</a>
                               </td>

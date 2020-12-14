@@ -17,12 +17,6 @@
                             <input type="hidden" name="feedbackid" value="{{ $fb->ID_FEEDBACK }}">
                             <div class="form-group row">
                               <div class="col">
-                                <label>Feedback ID</label>
-                                <input class="form-control" type="number" placeholder="{{ $fb->ID_FEEDBACK }}" value="{{ $fb->ID_FEEDBACK }}" name="feedbackid" required autofocus>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <div class="col">
                                 <label>User ID</label>
                                 <input class="form-control" type="number" placeholder="{{ $fb->ID_USER }}" value="{{ $fb->ID_USER }}" name="userid" required autofocus>
                               </div>

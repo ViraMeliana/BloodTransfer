@@ -24,7 +24,6 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'feedbackid' => 'required',
             'userid' => 'required',
             'adminid' => 'required',
             'date' => 'required',
@@ -39,7 +38,6 @@ class FeedbackController extends Controller
         // $tujuan_upload = 'photo_user';
         // $file->move($tujuan_upload,$nama_file);
         DB::table('feedback')->insert([
-            'ID_FEEDBACK' => $request->feedbackid,
             'ID_USER' => $request->userid,
             'ID_ADMIN' => $request->adminid,
             'DATE' => $request->date,
@@ -50,7 +48,6 @@ class FeedbackController extends Controller
     }
     public function update(Request $request, $ID_PROFILEADMIN){
         $this->validate($request, [
-            'feedbackid' => 'required',
             'userid' => 'required',
             'adminid' => 'required',
             'date' => 'required',
@@ -65,7 +62,6 @@ class FeedbackController extends Controller
         //  $tujuan_upload = 'photo_user';
         //  $file->move($tujuan_upload,$nama_file);
          DB::table('feedback')->where('ID_FEEDBACK',$request->feedbackid)->update([
-            'ID_FEEDBACK' => $request->feedbackid,
             'ID_USER' => $request->userid,
             'ID_ADMIN' => $request->adminid,
             'DATE' => $request->date,

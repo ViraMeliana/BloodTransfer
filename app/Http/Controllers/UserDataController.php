@@ -57,9 +57,9 @@ class UserDataController extends Controller
             'PHOTO' => $nama_file
         ]);
         $request->session()->flash('message', 'Successfully add user');
-        return redirect()->route('datauser.index');
+        return redirect()->route('userdata.index');
     }
-    public function update(Request $request, $id){
+    public function update(Request $request, $ID_USER){
         $this->validate($request, [
             'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
              'username' => 'required',
@@ -79,7 +79,7 @@ class UserDataController extends Controller
                // isi dengan nama folder tempat kemana file diupload
          $tujuan_upload = 'photo_user';
          $file->move($tujuan_upload,$nama_file);
-         DB::table('userdata')->where('ID_USER',$request->id)->update([
+         DB::table('userdata')->where('ID_USER',$request->ID_USER)->update([
              'USER_USERNAME' => $request->username,
              'USER_PASSWORD' => $request->password,
              'USER_NAME' => $request->name,
@@ -93,25 +93,33 @@ class UserDataController extends Controller
              'PHOTO' => $nama_file
          ]);
          $request->session()->flash('message', 'Successfully add user');
-         return redirect()->route('datauser.index');
+         return redirect()->route('userdata.index');
      }
-    public function show($id)
+    public function show($ID_USER)
     {
-        $user = DB::table('userdata')->where('ID_USER',$id)->get();
+        $user = DB::table('userdata')->where('ID_USER',$ID_USER)->get();
         return view('dashboard.datauser.datauserShow',['users'=>$user]);
     }
-    public function edit($id)
+    public function edit($ID_USER)
     {
-        $user = DB::table('userdata')->where('ID_USER',$id)->get();
+        $user = DB::table('userdata')->where('ID_USER',$ID_USER)->get();
         return view('dashboard.datauser.editdatauser',['users'=>$user]);
+        // @dd($user);
     }
-    public function destroy($id)
+    public function destroy($ID_USER)
     { 
+        // $tujuan_upload = '/photo_user/';
+        // $user = DB::table('userdata')->select('PHOTO')->where('ID_USER',$ID_USER)->get();
+        // File::delete(public_path().$tujuan_upload.$user);
+        // $user =  DB::table('userdata')->where('ID_USER',$ID_USER)->delete();
+        // return redirect()->route('userdata.index');
+
         $tujuan_upload = '/photo_user/';
-        $user = DB::table('userdata')->select('PHOTO')->where('ID_USER',$id)->get();
-        File::delete(public_path().$tujuan_upload.$user);
-        //unlink(public_path().$tujuan_upload.$user);
-        $stocks =  DB::table('userdata')->where('ID_USER',$id)->delete();
-        return redirect()->route('datauser.index');
+        $user = DB::table('userdata')->select('PHOTO')->where('ID_USER',$ID_USER)->get();
+        if(!File::exists(public_path().$tujuan_upload.$user)){
+            File::delete(public_path().$tujuan_upload.$user);
+        }
+        $user =  DB::table('userdata')->where('ID_USER',$ID_USER)->delete();
+        return redirect()->back();
     }
 }

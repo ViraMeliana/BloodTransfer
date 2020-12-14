@@ -18,12 +18,6 @@
                             <input type="hidden" name="transactionid" value="{{ $trans->ID_TRANS }}">
                             <div class="form-group row">
                                 <div class="col">
-                                    <label>Transaction ID</label>
-                                    <input class="form-control" type="number" placeholder="{{ $trans->ID_TRANS  }}" value="{{ $trans->ID_TRANS  }}" name="transactionid" required autofocus>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col">
                                     <label>Blood ID</label>
                                     <input class="form-control" type="number" placeholder="{{ $trans->ID_BLOOD }}" name="bloodid" value="{{ $trans->ID_BLOOD }}" required autofocus number_format>
                                 </div>
@@ -46,13 +40,13 @@
                             <div class="form-group row">
                                 <div class="col">
                                     <label>Health Document</label>
-                                    <input class="form-control" type="file"  name="file" required autofocus>
+                                    <input class="form-control" type="file"  name="healthdoc" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">
                                     <label>Statement</label>
-                                    <input class="form-control" type="file"  name="file" required autofocus>
+                                    <input class="form-control" type="file"  name="statement" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -70,7 +64,7 @@
                             <div class="form-group row">
                                 <div class="col">
                                     <label>Identity Card</label>
-                                    <input class="form-control" type="file" name="file" required autofocus >
+                                    <input class="form-control" type="file" name="identitycard" >
                                 </div>
                             </div>
                             <button class="btn btn-block btn-success" type="submit">{{ __('Add') }}</button>

@@ -30,8 +30,8 @@
                         @foreach($stocks as $stock)
                           <tr>
                             <td>{{ $stock->ID_ADMIN }}</td>
-                            <td>{{ $stock->STOCK }}</td>
                             <td>{{ $stock->USER_BLOODTYPES }}</td>
+                            <td>{{ $stock->STOCK }}</td>
                             <td>
                                 <a href="{{ url('/bloodbank/' . $stock->ID_BLOOD) }}" class="btn btn-block btn-primary">View</a>
                               </td>

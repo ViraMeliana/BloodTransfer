@@ -12,12 +12,6 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('feedback.store') }}">
                             @csrf
-                            <div class="form-group row">
-                              <div class="col">
-                                <label>Feedback ID</label>
-                                <input class="form-control" type="number" placeholder="" name="feedbackid" required autofocus>
-                              </div>
-                            </div>
 
                             <div class="form-group row">
                               <div class="col">

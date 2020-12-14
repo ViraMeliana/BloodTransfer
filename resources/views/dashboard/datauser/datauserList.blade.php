@@ -8,11 +8,11 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      
-                      <i class="fa fa-align-justify"></i>Users Data</div>
+                      <h4>Data User</h4>
+                    </div>
                     <div class="card-body">
                         <div class="row"> 
-                          <a href="{{ route('datauser.create') }}" class="btn btn-primary m-2">{{ __('Add User') }}</a>
+                          <a href="{{ route('userdata.create') }}" class="btn btn-primary m-3">{{ __('Add User') }}</a>
                         </div>
                         <br>
                         <table class="table table-responsive-sm table-striped">
@@ -30,18 +30,18 @@
                         <tbody>
                         @foreach($datauser as $user)
                           <tr>
-                            <td><strong>{{ $user->USER_USERNAME }}</strong></td>
-                            <td><strong>{{ $user->USER_NAME }}</strong></td>
-                            <td><strong>{{ $user->USER_EMAIL }}</strong></td>
-                            <td><strong>{{ $user->USER_BLOODTYPES }}</strong></td>
+                                <td>{{ $user->USER_USERNAME }}</td>
+                                <td>{{ $user->USER_NAME }}</td>
+                                <td>{{ $user->USER_EMAIL }}</td>
+                                <td>{{ $user->USER_BLOODTYPES }}</td>
                             <td>
-                                <a href="{{ url('/datauser/' . $user->ID_USER) }}" class="btn btn-block btn-primary">View</a>
+                                <a href="{{ url('/userdata/' . $user->ID_USER) }}" class="btn btn-block btn-primary">View</a>
                               </td>
                               <td>
-                                <a href="{{ url('/datauser/' . $user->ID_USER . '/edit') }}" class="btn btn-block btn-primary">Edit</a>
+                                <a href="{{ url('/userdata/' . $user->ID_USER . '/edit') }}" class="btn btn-block btn-primary">Edit</a>
                               </td>
                               <td>
-                                <form action="{{ route('datauser.destroy', $user->ID_USER ) }}" method="POST">
+                                <form action="{{ route('userdata.destroy', $user->ID_USER ) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn btn-block btn-danger">Delete</button>
@@ -65,4 +65,3 @@
 @section('javascript')
 
 @endsection
-

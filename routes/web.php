@@ -65,10 +65,12 @@ Route::group(['middleware' => ['get.menu']], function () {
         });
         Route::resource('notes', 'NotesController');
         Route::resource('bloodbank', 'BloodStockController');
-        Route::resource('datauser', 'UserDataController');
+        Route::resource('userdata', 'UserDataController');
         Route::resource('adminprofile', 'AdminProfileController');
         Route::resource('transaction', 'TransactionController');
         Route::resource('feedback', 'FeedbackController');
+        Route::get('downloadHealthDoc/{ID_TRANS}', 'TransactionController@downloadHealthDoc');
+        Route::get('downloadStatement/{ID_TRANS}', 'TransactionController@downloadStatement');
     });
     Auth::routes();
     
@@ -80,7 +82,8 @@ Route::group(['middleware' => ['get.menu']], function () {
         'show'      => 'resource.show',
         'edit'      => 'resource.edit',
         'update'    => 'resource.update',
-        'destroy'   => 'resource.destroy'
+        'destroy'   => 'resource.destroy',
+        // 'download'  => 'resource.download'
     ]);
 
     Route::group(['middleware' => ['role:admin']], function () {
@@ -103,6 +106,7 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::post('/update',      'MenuElementController@update')->name('menu.update');
             Route::get('/show',         'MenuElementController@show')->name('menu.show');
             Route::get('/delete',       'MenuElementController@delete')->name('menu.delete');
+            // Route::get('/download',       'MenuElementController@download')->name('menu.download');
         });
         Route::prefix('menu/menu')->group(function () { 
             Route::get('/',         'MenuController@index')->name('menu.menu.index');
@@ -111,6 +115,7 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::get('/edit',     'MenuController@edit')->name('menu.menu.edit');
             Route::post('/update',  'MenuController@update')->name('menu.menu.update');
             Route::get('/delete',   'MenuController@delete')->name('menu.menu.delete');
+            // Route::get('/download',   'MenuController@download')->name('menu.menu.download');
         });
         Route::prefix('media')->group(function () {
             Route::get('/',                 'MediaController@index')->name('media.folder.index');
@@ -118,7 +123,8 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::post('/folder/update',   'MediaController@folderUpdate')->name('media.folder.update');
             Route::get('/folder',           'MediaController@folder')->name('media.folder');
             Route::post('/folder/move',     'MediaController@folderMove')->name('media.folder.move');
-            Route::post('/folder/delete',   'MediaController@folderDelete')->name('media.folder.delete');;
+            Route::post('/folder/delete',   'MediaController@folderDelete')->name('media.folder.delete');
+            // Route::post('/folder/download',   'MediaController@folderDownload')->name('media.folder.download');;
 
             Route::post('/file/store',      'MediaController@fileAdd')->name('media.file.add');
             Route::get('/file',             'MediaController@file');
@@ -127,6 +133,7 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::post('/file/move',       'MediaController@fileMove')->name('media.file.move');
             Route::post('/file/cropp',      'MediaController@cropp');
             Route::get('/file/copy',        'MediaController@fileCopy')->name('media.file.copy');
+            // Route::get('/file/download',    'MediaController@fileDownload')->name('media.file.download');
         });
     });
 });

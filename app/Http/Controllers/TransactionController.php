@@ -24,8 +24,9 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-           'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'transactionid' => 'required|numeric',
+            'healthdoc' => 'required|file|mimes:pdf,docx,doc|max:2048',
+            'statement' => 'required|file|mimes:pdf,docx,doc|max:2048',
+            'identitycard' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'bloodid' => 'required|numeric',
             'userid' => 'required|numeric',
             'category' => 'required',
@@ -33,32 +34,36 @@ class TransactionController extends Controller
             'date' => 'required',
             ]);
         // menyimpan data file yang diupload ke variabel $file
-        $file = $request->file('file');
-     
-        $nama_file = time()."_".$file->getClientOriginalName();
-
+        $healthdoc = $request->file('healthdoc');
+        $statement = $request->file('statement');
+        $identitycard = $request->file('identitycard');
+        $health_doc = time()."_".$healthdoc->getClientOriginalName(); 
+        $statements = time()."_".$statement->getClientOriginalName();
+        $identity_card = time()."_".$identitycard->getClientOriginalName();
      
               // isi dengan nama folder tempat kemana file diupload
         $tujuan_upload = 'photo_transaction';
-        $file->move($tujuan_upload,$nama_file);
+        $healthdoc->move($tujuan_upload,$health_doc);
+        $statement->move($tujuan_upload,$statements);
+        $identitycard->move($tujuan_upload,$identity_card);
         DB::table('transaction')->insert([
-            'ID_TRANS' => $request->transactionid,
             'ID_BLOOD' => $request->bloodid,
             'ID_USER' => $request->userid,
             'CATEGORY' => $request->category,
-            'HEALTH_DOC' => $nama_file,
-            'STATEMENT' => $nama_file,
+            'HEALTH_DOC' => $health_doc,
+            'STATEMENT' => $statements,
             'STATUS' => $request->status,
             'DATE' => $request->date,
-            'IDENTITY_CARD' => $nama_file,
+            'IDENTITY_CARD' => $identity_card,
         ]);
         $request->session()->flash('message', 'Successfully add transaction');
         return redirect()->route('transaction.index');
     }
     public function update(Request $request, $ID_TRANS){
         $this->validate($request, [
-            'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'transactionid' => 'required|numeric',
+            'healthdoc' => 'required|file|mimes:pdf,docx,doc|max:2048',
+            'statement' => 'required|file|mimes:pdf,docx,doc|max:2048',
+            'identitycard' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'bloodid' => 'required|numeric',
             'userid' => 'required|numeric',
             'category' => 'required',
@@ -66,23 +71,27 @@ class TransactionController extends Controller
             'date' => 'required',
              ]);
          // menyimpan data file yang diupload ke variabel $file
-         $file = $request->file('file');
-      
-         $nama_file = time()."_".$file->getClientOriginalName();
+         $healthdoc = $request->file('healthdoc');
+         $statement = $request->file('statement');
+         $identitycard = $request->file('identitycard');
+         $health_doc = time()."_".$healthdoc->getClientOriginalName(); 
+         $statements = time()."_".$statement->getClientOriginalName();
+         $identity_card = time()."_".$identitycard->getClientOriginalName();
       
                // isi dengan nama folder tempat kemana file diupload
-         $tujuan_upload = 'photo_transaction';
-         $file->move($tujuan_upload,$nama_file);
+               $tujuan_upload = 'photo_transaction';
+               $healthdoc->move($tujuan_upload,$health_doc);
+                $statement->move($tujuan_upload,$statements);
+                $identitycard->move($tujuan_upload,$identity_card);
          DB::table('transaction')->where('ID_TRANS',$request->transactionid)->update([
-            'ID_TRANS' => $request->transactionid,
             'ID_BLOOD' => $request->bloodid,
             'ID_USER' => $request->userid,
             'CATEGORY' => $request->category,
-            'HEALTH_DOC' => $nama_file,
-            'STATEMENT' => $nama_file,
+            'HEALTH_DOC' => $health_doc,
+            'STATEMENT' => $statements,
             'STATUS' => $request->status,
             'DATE' => $request->date,
-            'IDENTITY_CARD' => $nama_file,
+            'IDENTITY_CARD' => $identity_card,
          ]);
          $request->session()->flash('message', 'Successfully add transaction');
          return redirect()->route('transaction.index');
@@ -101,5 +110,17 @@ class TransactionController extends Controller
     {
         $transaction =  DB::table('transaction')->where('ID_TRANS',$ID_TRANS)->delete();
         return redirect()->route('transaction.index');
+    }
+    public function downloadHealthDoc($ID_TRANS)
+    {
+        $transaction = Transaction::where('ID_TRANS', $ID_TRANS)->firstOrFail();
+        $pathToFile = public_path('photo_transaction/' . $transaction->HEALTH_DOC);
+        return response()->download($pathToFile);
+    }
+    public function downloadStatement($ID_TRANS)
+    {
+        $transaction = Transaction::where('ID_TRANS', $ID_TRANS)->firstOrFail();
+        $pathToFile = public_path('photo_transaction/' . $transaction->STATEMENT);
+        return response()->download($pathToFile);
     }
 }

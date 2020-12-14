@@ -13,7 +13,6 @@
                 <table class="table table-striped table-bordered datatable">
                     <thead>
                         <tr>
-                        <th>Feedback ID</th>
                             <th>User ID</th>
                             <th>Admin ID</th>
                             <th>Date</th>
@@ -23,7 +22,6 @@
                     <tbody>
                     @foreach($feedback as $fb)
                         <tr>
-                        <td>{{ $fb->ID_FEEDBACK }}</td>
                             <td>{{ $fb->ID_USER }}</td>
                             <td>{{ $fb->ID_ADMIN }}</td>
                             <td>{{ $fb->DATE }}</td>

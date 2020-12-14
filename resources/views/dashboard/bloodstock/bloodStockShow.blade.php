@@ -21,9 +21,9 @@
                     <tbody>
                     @foreach($stock as $stock)
                         <tr>
-                        <td>{{ $stock->ID_ADMIN }}</td>
-                            <td>{{ $stock->STOCK }}</td>
+                            <td>{{ $stock->ID_ADMIN }}</td>
                             <td>{{ $stock->USER_BLOODTYPES }}</td>
+                            <td>{{ $stock->STOCK }}</td>
                         </tr>
                         @endforeach
                     </tbody>
