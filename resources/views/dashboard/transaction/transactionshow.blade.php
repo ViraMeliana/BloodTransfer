@@ -37,7 +37,7 @@
                                 </td>
                                 <td>{{ $trans->STATUS }}</td>
                                 <td>{{ $trans->DATE }}</td>
-                                <td><img src="{{ url('/photo_transaction')}}/{{$trans->IDENTITY_CARD}}" style="width:200px; height:250px"></td>
+                                <td><img src="{{ url('/photo_transaction')}}/{{$trans->IDENTITY_CARD}}" style="width:240px; height:300px"></td>
                         </tr>
                         @endforeach
                     </tbody>

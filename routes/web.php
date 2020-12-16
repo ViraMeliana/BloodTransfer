@@ -69,6 +69,7 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::resource('adminprofile', 'AdminProfileController');
         Route::resource('transaction', 'TransactionController');
         Route::resource('feedback', 'FeedbackController');
+        Route::resource('users', 'UsersController');
         Route::get('downloadHealthDoc/{ID_TRANS}', 'TransactionController@downloadHealthDoc');
         Route::get('downloadStatement/{ID_TRANS}', 'TransactionController@downloadStatement');
     });

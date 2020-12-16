@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Hash;
 
 class UsersController extends Controller
 {
@@ -62,6 +63,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -88,6 +90,29 @@ class UsersController extends Controller
         if($user){
             $user->delete();
         }
+        return redirect()->route('users.index');
+    }
+
+    public function create()
+    {
+        return view('dashboard.admin.userCreate');
+    }
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            ]);
+        $user = User::insert(
+        [
+            'name' => $request->name,
+            'email' => $request->email,
+            'email_verified_at' => time(),
+            'password' => Hash::make($request['password']),
+            'menuroles' => "user",
+        ]);
+        $request->session()->flash('message', 'Successfully add users');
         return redirect()->route('users.index');
     }
 }
