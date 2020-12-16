@@ -37,7 +37,7 @@
                                 <td>{{ $user->USER_ADDRESS }}</td>
                                 <td>{{ $user->NIK }}</td>
                                 <td>{{ $user->USER_BLOODTYPES }}</td>
-                                <td><img src="{{ url('/photo_user')}}/{{$user->PHOTO}}" style="width:200px; height:250px"></td>
+                                <td><img src="{{ url('/photo_user')}}/{{$user->PHOTO}}" style="width:240px; height:300px"></td>
                         </tr>
                         @endforeach
                     </tbody>

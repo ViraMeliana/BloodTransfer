@@ -5,32 +5,31 @@
         <div class="container-fluid">
           <div class="animated fadeIn">
             <div class="row">
-              <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
+              <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i> {{ __('Edit') }} {{ $user->name }}</div>
+                    <h4>Edit User Admin</h4></div>
                     <div class="card-body">
-                        <br>
                         <form method="POST" action="/users/{{ $user->id }}">
                             @csrf
                             @method('PUT')
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                      <svg class="c-icon c-icon-sm">
-                                          <use xlink:href="/assets/icons/coreui/free-symbol-defs.svg#cui-user"></use>
-                                      </svg>
-                                    </span>
+                            <input type="hidden" name="id" value="{{ $user->id }}">
+
+                            <div class="form-group row">
+                                <div class="col">   
+                                    <label>Name</label>
+                                    <input class="form-control" type="text" placeholder="{{ $user->name }}" value="{{ $user->name }}" name="name" required autofocus>
                                 </div>
-                                <input class="form-control" type="text" placeholder="{{ __('Name') }}" name="name" value="{{ $user->name }}" required autofocus>
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@</span>
+                            
+                            <div class="form-group row">
+                                <div class="col">
+                                    <label>Email</label>
+                                    <input class="form-control" type="text" placeholder="{{ $user->email }}" value="{{ $user->email }}" name="email" required autofocus>
                                 </div>
-                                <input class="form-control" type="text" placeholder="{{ __('E-Mail Address') }}" name="email" value="{{ $user->email }}" required>
                             </div>
-                            <button class="btn btn-block btn-success" type="submit">{{ __('Save') }}</button>
+
+                            <button class="btn btn-block btn-success" type="submit">{{ __('Add') }}</button>
                             <a href="{{ route('users.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a> 
                         </form>
                     </div>
