@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
 use Hash;
 
 class UsersController extends Controller
@@ -108,7 +109,7 @@ class UsersController extends Controller
         [
             'name' => $request->name,
             'email' => $request->email,
-            'email_verified_at' => time(),
+            'email_verified_at' => Carbon::now(),
             'password' => Hash::make($request['password']),
             'menuroles' => "user",
         ]);

@@ -16,6 +16,7 @@ class User extends Authenticatable
     use HasRoles;
     use HasFactory;
     
+    
     protected $table = 'users';
 
     /**
@@ -23,8 +24,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 
     ];
 
     /**
@@ -46,7 +49,9 @@ class User extends Authenticatable
     ];
 
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
+        'created_at',
+        'update_at'
     ];
 
     protected $attributes = [ 
